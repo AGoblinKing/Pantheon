@@ -10,11 +10,11 @@ public class CameraControl : MonoBehaviour {
         Vector3 dst = new Vector3();
 
         if (Input.GetAxis("Vertical") > 0) {
-            dst.z += speed;
+            dst.y += speed;
         }
 
         if (Input.GetAxis("Vertical") < 0) {
-            dst.z -= speed;
+            dst.y -= speed;
         }
 
         if (Input.GetAxis("Horizontal") > 0) {
@@ -27,9 +27,9 @@ public class CameraControl : MonoBehaviour {
 
         float wheel = Input.GetAxis("Mouse ScrollWheel");
         if (wheel != 0) {
-            dst.y += Mathf.Sign(wheel) * scrollSpeed;
+            dst.z += Mathf.Sign(wheel) * scrollSpeed;
         }
 
-        transform.position += dst * Time.deltaTime;
+        transform.Translate(dst * Time.deltaTime, Space.Self);
     }
 }
